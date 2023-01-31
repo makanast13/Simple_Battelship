@@ -1,0 +1,368 @@
+﻿<Window x:Class="Battelship.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Battelship"
+        mc:Ignorable="d"
+        Title="BattleShips" Width="800" Background="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Icon="/MainMenu_Screen.png" Height="485">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFDF1F1F"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF01FFE0"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="Transparent" Opacity="0"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="Transparent" Opacity="0"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Canvas VerticalAlignment="Top" HorizontalAlignment="Left" Height="0">
+        <Canvas x:Name="MainMenu" Visibility="Hidden">
+            <Image Source="/MainMenu_Screen.png" Width="800" Height="450" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <Button x:Name="newGameButton" Click="newGameClick" Height="33" Canvas.Left="469" Canvas.Top="218" Width="256" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0" Cursor="Hand"/>
+            <Button x:Name="howToButton" Click="howToClick" Height="33" Canvas.Left="448" Canvas.Top="271" Width="299" HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="0" Cursor="Hand"/>
+            <Button x:Name="settingsButton" Click="settingsClick" Height="33" Canvas.Left="501" Canvas.Top="322" Width="191" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0" Cursor="Hand"/>
+            <Button x:Name="quitButton" Click="quitClick" Height="33" Canvas.Left="642" Canvas.Top="396" Width="132" HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="0" Cursor="Hand"/>
+
+        </Canvas>
+        <Canvas x:Name="Settings" Visibility="Hidden">
+            <Image Source="/SettingsScreen.png" Width="800" Height="450" HorizontalAlignment="Left" VerticalAlignment="Center" />                    
+            <TextBox x:Name="playerName" TextWrapping="Wrap" Text="Player" Width="163" Canvas.Left="591" Canvas.Top="204" Height="29" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" SelectionBrush="#FFCA540C" Cursor="IBeam"/>
+            <Button x:Name="backButton" Click="toMainMenuUpdateSettings" Height="33" Canvas.Left="15" Canvas.Top="406" Width="148" HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="0" Cursor="Hand"/>
+        </Canvas>
+
+        <Canvas x:Name="HowTo" Visibility="Hidden">
+            <Image Source="/HowToPlayScreen.png" Width="800" Height="450" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <Button x:Name="back2Button" Click="toMainMenu" Height="33" Canvas.Left="15" Canvas.Top="406" Width="148" HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="0" Cursor="Hand"/>
+
+        </Canvas>
+        <Canvas x:Name="NewGame" Visibility="Visible">
+            <Image Height="450" Width="800" Source="/GameScreenBackground.png"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="A1" Content="A1" Click="makeGuessOnClick" Canvas.Left="376" Canvas.Top="102" HorizontalAlignment="Center" VerticalAlignment="Center" Width="33" Height="33" Background="Transparent" Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="A2" Content="A2" Click="makeGuessOnClick" Canvas.Left="376" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="A3" Content="A3" Click="makeGuessOnClick" Canvas.Left="376" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="A4" Content="A4" Click="makeGuessOnClick" Canvas.Left="376" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="A5" Content="A5" Click="makeGuessOnClick" Canvas.Left="376" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="A6" Content="A6" Click="makeGuessOnClick" Canvas.Left="376" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="A7" Content="A7" Click="makeGuessOnClick" Canvas.Left="376" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="A8" Content="A8" Click="makeGuessOnClick" Canvas.Left="376" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="A9" Content="A9" Click="makeGuessOnClick" Canvas.Left="376" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="A10" Content="A10" Click="makeGuessOnClick" Canvas.Left="376" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="B1" Content="B1" Click="makeGuessOnClick" Canvas.Left="409" Canvas.Top="102" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="B2" Content="B2" Click="makeGuessOnClick" Canvas.Left="409" Canvas.Top="135" Width="34" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="B3" Content="B3" Click="makeGuessOnClick" Canvas.Left="409" Canvas.Top="169" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="B4" Content="B4" Click="makeGuessOnClick" Canvas.Left="409" Canvas.Top="202" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="B5" Content="B5" Click="makeGuessOnClick" Canvas.Left="409" Canvas.Top="235" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="B6" Content="B6" Click="makeGuessOnClick" Canvas.Left="409" Canvas.Top="268" Width="34" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="B7" Content="B7" Click="makeGuessOnClick" Canvas.Left="409" Canvas.Top="302" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="B8" Content="B8" Click="makeGuessOnClick" Canvas.Left="409" Canvas.Top="335" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="B9" Content="B9" Click="makeGuessOnClick" Canvas.Left="409" Canvas.Top="368" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="B10" Content="B10" Click="makeGuessOnClick" Canvas.Left="409" Canvas.Top="401" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="C1" Content="C1" Click="makeGuessOnClick" Canvas.Left="443" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="C2" Content="C2" Click="makeGuessOnClick" Canvas.Left="443" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="C3" Content="C3" Click="makeGuessOnClick" Canvas.Left="443" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="C4" Content="C4" Click="makeGuessOnClick" Canvas.Left="443" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="C5" Content="C5" Click="makeGuessOnClick" Canvas.Left="443" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="C6" Content="C6" Click="makeGuessOnClick" Canvas.Left="443" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="C7" Content="C7" Click="makeGuessOnClick" Canvas.Left="443" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="C8" Content="C8" Click="makeGuessOnClick" Canvas.Left="443" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="C9" Content="C9" Click="makeGuessOnClick" Canvas.Left="443" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="C10" Content="C10" Click="makeGuessOnClick" Canvas.Left="443" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="D1" Content="D1" Click="makeGuessOnClick" Canvas.Left="476" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="D2" Content="D2" Click="makeGuessOnClick" Canvas.Left="476" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="D3" Content="D3" Click="makeGuessOnClick" Canvas.Left="476" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="D4" Content="D4" Click="makeGuessOnClick" Canvas.Left="476" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="D5" Content="D5" Click="makeGuessOnClick" Canvas.Left="476" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="D6" Content="D6" Click="makeGuessOnClick" Canvas.Left="476" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="D7" Content="D7" Click="makeGuessOnClick" Canvas.Left="476" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="D8" Content="D8" Click="makeGuessOnClick" Canvas.Left="476" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="D9" Content="D9" Click="makeGuessOnClick" Canvas.Left="476" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="D10" Content="D10" Click="makeGuessOnClick" Canvas.Left="476" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="E1" Content="E1" Click="makeGuessOnClick" Canvas.Left="509" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="E2" Content="E2" Click="makeGuessOnClick" Canvas.Left="509" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="E3" Content="E3" Click="makeGuessOnClick" Canvas.Left="509" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="E4" Content="E4" Click="makeGuessOnClick" Canvas.Left="509" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="E5" Content="E5" Click="makeGuessOnClick" Canvas.Left="509" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="E6" Content="E6" Click="makeGuessOnClick" Canvas.Left="509" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="E7" Content="E7" Click="makeGuessOnClick" Canvas.Left="509" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="E8" Content="E8" Click="makeGuessOnClick" Canvas.Left="509" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="E9" Content="E9" Click="makeGuessOnClick" Canvas.Left="509" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="E10" Content="E10" Click="makeGuessOnClick" Canvas.Left="509" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="F1" Content="F1" Click="makeGuessOnClick" Canvas.Left="542" Canvas.Top="102" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="F2" Content="F2" Click="makeGuessOnClick" Canvas.Left="542" Canvas.Top="135" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="F3" Content="F3" Click="makeGuessOnClick" Canvas.Left="542" Canvas.Top="169" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="F4" Content="F4" Click="makeGuessOnClick" Canvas.Left="542" Canvas.Top="202" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="F5" Content="F5" Click="makeGuessOnClick" Canvas.Left="542" Canvas.Top="235" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="F6" Content="F6" Click="makeGuessOnClick" Canvas.Left="542" Canvas.Top="268" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="F7" Content="F7" Click="makeGuessOnClick" Canvas.Left="542" Canvas.Top="302" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="F8" Content="F8" Click="makeGuessOnClick" Canvas.Left="542" Canvas.Top="335" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="F9" Content="F9" Click="makeGuessOnClick" Canvas.Left="542" Canvas.Top="368" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="F10" Content="F10" Click="makeGuessOnClick" Canvas.Left="542" Canvas.Top="401" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="G1" Content="G1" Click="makeGuessOnClick" Canvas.Left="576" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="G2" Content="G2" Click="makeGuessOnClick" Canvas.Left="576" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="G3" Content="G3" Click="makeGuessOnClick" Canvas.Left="576" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="G4" Content="G4" Click="makeGuessOnClick" Canvas.Left="576" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="G5" Content="G5" Click="makeGuessOnClick" Canvas.Left="576" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="G6" Content="G6" Click="makeGuessOnClick" Canvas.Left="576" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="G7" Content="G7" Click="makeGuessOnClick" Canvas.Left="576" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="G8" Content="G8" Click="makeGuessOnClick" Canvas.Left="576" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="G9" Content="G9" Click="makeGuessOnClick" Canvas.Left="576" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="G10" Content="G10" Click="makeGuessOnClick" Canvas.Left="576" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="H1" Content="H1" Click="makeGuessOnClick" Canvas.Left="609" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="H2" Content="H2" Click="makeGuessOnClick" Canvas.Left="609" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="H3" Content="H3" Click="makeGuessOnClick" Canvas.Left="609" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="H4" Content="H4" Click="makeGuessOnClick" Canvas.Left="609" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="H5" Content="H5" Click="makeGuessOnClick" Canvas.Left="609" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="H6" Content="H6" Click="makeGuessOnClick" Canvas.Left="609" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="H7" Content="H7" Click="makeGuessOnClick" Canvas.Left="609" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="H8" Content="H8" Click="makeGuessOnClick" Canvas.Left="609" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="H9" Content="H9" Click="makeGuessOnClick" Canvas.Left="609" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="H10" Content="H10" Click="makeGuessOnClick" Canvas.Left="609" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="I1" Content="I1" Click="makeGuessOnClick" Canvas.Left="642" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="I2" Content="I2" Click="makeGuessOnClick" Canvas.Left="642" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="I3" Content="I3" Click="makeGuessOnClick" Canvas.Left="642" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="I4" Content="I4" Click="makeGuessOnClick" Canvas.Left="642" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="I5" Content="I5" Click="makeGuessOnClick" Canvas.Left="642" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="I6" Content="I6" Click="makeGuessOnClick" Canvas.Left="642" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="I7" Content="I7" Click="makeGuessOnClick" Canvas.Left="642" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="I8" Content="I8" Click="makeGuessOnClick" Canvas.Left="642" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="I9" Content="I9" Click="makeGuessOnClick" Canvas.Left="642" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="I10" Content="I10" Click="makeGuessOnClick" Canvas.Left="642" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="J1" Content="J1" Click="makeGuessOnClick" Canvas.Left="675" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="J2" Content="J2" Click="makeGuessOnClick" Canvas.Left="675" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="J3" Content="J3" Click="makeGuessOnClick" Canvas.Left="675" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="J4" Content="J4" Click="makeGuessOnClick" Canvas.Left="675" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="J5" Content="J5" Click="makeGuessOnClick" Canvas.Left="675" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="J6" Content="J6" Click="makeGuessOnClick" Canvas.Left="675" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="J7" Content="J7" Click="makeGuessOnClick" Canvas.Left="675" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="J8" Content="J8" Click="makeGuessOnClick" Canvas.Left="675" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="J9" Content="J9" Click="makeGuessOnClick" Canvas.Left="675" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle2}" x:Name="J10" Content="J10" Click="makeGuessOnClick" Canvas.Left="675" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Rectangle Height="92" Stroke="Black" Width="235" Canvas.Left="89" Canvas.Top="193" HorizontalAlignment="Center" VerticalAlignment="Top" Fill="#FF6A6A6A"/>
+            <Label x:Name="consoleBox" Content="" Canvas.Left="89" Canvas.Top="209" Height="61" Width="235" HorizontalAlignment="Center" VerticalAlignment="Top" Background="Black" Foreground="#FF00ED02" FontSize="14" FontFamily="Cascadia Mono SemiBold" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
+
+        </Canvas>
+        <Canvas x:Name="QuitGame" Background="#FFD62A2A" Height="176" Width="309" Canvas.Left="258" Canvas.Top="105" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Hidden">
+            <Label Content="ARE YOU SURE YOU WANT TO QUIT?" Canvas.Left="44" Canvas.Top="46" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" FontWeight="Bold"/>
+            <Button Content="YES" Click="programQuitFunction" Canvas.Left="59" Canvas.Top="110" HorizontalAlignment="Center" VerticalAlignment="Top" Width="62" Height="28" Cursor="Hand"/>
+            <Button Content="NO" Click="closeQuitBox" Canvas.Left="186" Canvas.Top="110" Width="62" Height="28" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="Hand"/>
+
+        </Canvas>
+        <Canvas x:Name="Setup" Visibility="Hidden">
+            <Image Height="450" Width="800" Source="/placeshipsBackground.png"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sA1" Content="A1" Click="placeShipOnClick" Canvas.Left="376" Canvas.Top="102" HorizontalAlignment="Center" VerticalAlignment="Center" Width="33" Height="33" Background="Transparent" Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sA2" Content="A2" Click="placeShipOnClick" Canvas.Left="376" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sA3" Content="A3" Click="placeShipOnClick" Canvas.Left="376" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sA4" Content="A4" Click="placeShipOnClick" Canvas.Left="376" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sA5" Content="A5" Click="placeShipOnClick" Canvas.Left="376" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sA6" Content="A6" Click="placeShipOnClick" Canvas.Left="376" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sA7" Content="A7" Click="placeShipOnClick" Canvas.Left="376" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sA8" Content="A8" Click="placeShipOnClick" Canvas.Left="376" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sA9" Content="A9" Click="placeShipOnClick" Canvas.Left="376" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sA10" Content="A10" Click="placeShipOnClick" Canvas.Left="376" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sB1" Content="B1" Click="placeShipOnClick" Canvas.Left="409" Canvas.Top="102" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sB2" Content="B2" Click="placeShipOnClick" Canvas.Left="409" Canvas.Top="135" Width="34" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sB3" Content="B3" Click="placeShipOnClick" Canvas.Left="409" Canvas.Top="169" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sB4" Content="B4" Click="placeShipOnClick" Canvas.Left="409" Canvas.Top="202" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sB5" Content="B5" Click="placeShipOnClick" Canvas.Left="409" Canvas.Top="235" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sB6" Content="B6" Click="placeShipOnClick" Canvas.Left="409" Canvas.Top="268" Width="34" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sB7" Content="B7" Click="placeShipOnClick" Canvas.Left="409" Canvas.Top="302" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sB8" Content="B8" Click="placeShipOnClick" Canvas.Left="409" Canvas.Top="335" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sB9" Content="B9" Click="placeShipOnClick" Canvas.Left="409" Canvas.Top="368" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sB10" Content="B10" Click="placeShipOnClick" Canvas.Left="409" Canvas.Top="401" Width="34" Height="33" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sC1" Content="C1" Click="placeShipOnClick" Canvas.Left="443" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sC2" Content="C2" Click="placeShipOnClick" Canvas.Left="443" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sC3" Content="C3" Click="placeShipOnClick" Canvas.Left="443" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sC4" Content="C4" Click="placeShipOnClick" Canvas.Left="443" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sC5" Content="C5" Click="placeShipOnClick" Canvas.Left="443" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sC6" Content="C6" Click="placeShipOnClick" Canvas.Left="443" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sC7" Content="C7" Click="placeShipOnClick" Canvas.Left="443" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sC8" Content="C8" Click="placeShipOnClick" Canvas.Left="443" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sC9" Content="C9" Click="placeShipOnClick" Canvas.Left="443" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sC10" Content="C10" Click="placeShipOnClick" Canvas.Left="443" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sD1" Content="D1" Click="placeShipOnClick" Canvas.Left="476" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sD2" Content="D2" Click="placeShipOnClick" Canvas.Left="476" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sD3" Content="D3" Click="placeShipOnClick" Canvas.Left="476" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sD4" Content="D4" Click="placeShipOnClick" Canvas.Left="476" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sD5" Content="D5" Click="placeShipOnClick" Canvas.Left="476" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sD6" Content="D6" Click="placeShipOnClick" Canvas.Left="476" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sD7" Content="D7" Click="placeShipOnClick" Canvas.Left="476" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sD8" Content="D8" Click="placeShipOnClick" Canvas.Left="476" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sD9" Content="D9" Click="placeShipOnClick" Canvas.Left="476" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sD10" Content="D10" Click="placeShipOnClick" Canvas.Left="476" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sE1" Content="E1" Click="placeShipOnClick" Canvas.Left="509" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sE2" Content="E2" Click="placeShipOnClick" Canvas.Left="509" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sE3" Content="E3" Click="placeShipOnClick" Canvas.Left="509" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sE4" Content="E4" Click="placeShipOnClick" Canvas.Left="509" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sE5" Content="E5" Click="placeShipOnClick" Canvas.Left="509" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sE6" Content="E6" Click="placeShipOnClick" Canvas.Left="509" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sE7" Content="E7" Click="placeShipOnClick" Canvas.Left="509" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sE8" Content="E8" Click="placeShipOnClick" Canvas.Left="509" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sE9" Content="E9" Click="placeShipOnClick" Canvas.Left="509" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sE10" Content="E10" Click="placeShipOnClick" Canvas.Left="509" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sF1" Content="F1" Click="placeShipOnClick" Canvas.Left="542" Canvas.Top="102" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sF2" Content="F2" Click="placeShipOnClick" Canvas.Left="542" Canvas.Top="135" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sF3" Content="F3" Click="placeShipOnClick" Canvas.Left="542" Canvas.Top="169" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sF4" Content="F4" Click="placeShipOnClick" Canvas.Left="542" Canvas.Top="202" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sF5" Content="F5" Click="placeShipOnClick" Canvas.Left="542" Canvas.Top="235" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sF6" Content="F6" Click="placeShipOnClick" Canvas.Left="542" Canvas.Top="268" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sF7" Content="F7" Click="placeShipOnClick" Canvas.Left="542" Canvas.Top="302" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sF8" Content="F8" Click="placeShipOnClick" Canvas.Left="542" Canvas.Top="335" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sF9" Content="F9" Click="placeShipOnClick" Canvas.Left="542" Canvas.Top="368" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sF10" Content="F10" Click="placeShipOnClick" Canvas.Left="542" Canvas.Top="401" Width="34" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sG1" Content="G1" Click="placeShipOnClick" Canvas.Left="576" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sG2" Content="G2" Click="placeShipOnClick" Canvas.Left="576" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sG3" Content="G3" Click="placeShipOnClick" Canvas.Left="576" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sG4" Content="G4" Click="placeShipOnClick" Canvas.Left="576" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sG5" Content="G5" Click="placeShipOnClick" Canvas.Left="576" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sG6" Content="G6" Click="placeShipOnClick" Canvas.Left="576" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sG7" Content="G7" Click="placeShipOnClick" Canvas.Left="576" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sG8" Content="G8" Click="placeShipOnClick" Canvas.Left="576" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sG9" Content="G9" Click="placeShipOnClick" Canvas.Left="576" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sG10" Content="G10" Click="placeShipOnClick" Canvas.Left="576" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sH1" Content="H1" Click="placeShipOnClick" Canvas.Left="609" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sH2" Content="H2" Click="placeShipOnClick" Canvas.Left="609" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sH3" Content="H3" Click="placeShipOnClick" Canvas.Left="609" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sH4" Content="H4" Click="placeShipOnClick" Canvas.Left="609" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sH5" Content="H5" Click="placeShipOnClick" Canvas.Left="609" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sH6" Content="H6" Click="placeShipOnClick" Canvas.Left="609" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sH7" Content="H7" Click="placeShipOnClick" Canvas.Left="609" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sH8" Content="H8" Click="placeShipOnClick" Canvas.Left="609" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sH9" Content="H9" Click="placeShipOnClick" Canvas.Left="609" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sH10" Content="H10" Click="placeShipOnClick" Canvas.Left="609" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sI1" Content="I1" Click="placeShipOnClick" Canvas.Left="642" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sI2" Content="I2" Click="placeShipOnClick" Canvas.Left="642" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sI3" Content="I3" Click="placeShipOnClick" Canvas.Left="642" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sI4" Content="I4" Click="placeShipOnClick" Canvas.Left="642" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sI5" Content="I5" Click="placeShipOnClick" Canvas.Left="642" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sI6" Content="I6" Click="placeShipOnClick" Canvas.Left="642" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sI7" Content="I7" Click="placeShipOnClick" Canvas.Left="642" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sI8" Content="I8" Click="placeShipOnClick" Canvas.Left="642" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sI9" Content="I9" Click="placeShipOnClick" Canvas.Left="642" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sI10" Content="I10" Click="placeShipOnClick" Canvas.Left="642" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sJ1" Content="J1" Click="placeShipOnClick" Canvas.Left="675" Canvas.Top="102" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sJ2" Content="J2" Click="placeShipOnClick" Canvas.Left="675" Canvas.Top="135" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sJ3" Content="J3" Click="placeShipOnClick" Canvas.Left="675" Canvas.Top="169" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sJ4" Content="J4" Click="placeShipOnClick" Canvas.Left="675" Canvas.Top="202" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sJ5" Content="J5" Click="placeShipOnClick" Canvas.Left="675" Canvas.Top="235" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sJ6" Content="J6" Click="placeShipOnClick" Canvas.Left="675" Canvas.Top="268" Width="33" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sJ7" Content="J7" Click="placeShipOnClick" Canvas.Left="675" Canvas.Top="302" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sJ8" Content="J8" Click="placeShipOnClick" Canvas.Left="675" Canvas.Top="335" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sJ9" Content="J9" Click="placeShipOnClick" Canvas.Left="675" Canvas.Top="368" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="sJ10" Content="J10" Click="placeShipOnClick" Canvas.Left="675" Canvas.Top="401" Width="33" Height="33" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"  Cursor="Hand"/>
+            <Button Content="" Click="calculateUserShips" Canvas.Left="136" Canvas.Top="403" Height="37" Width="167" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" Opacity="0" Cursor="Hand"/>
+            <Label x:Name="invalidmessage" Content="" Canvas.Left="136" Canvas.Top="372" HorizontalAlignment="Left" VerticalAlignment="Center" Width="167" Foreground="#FFB30000" FontWeight="Bold" FontFamily="Arial Black"/>
+            <Label x:Name="shipSelect" Content="Select ship" Canvas.Left="195" Canvas.Top="350" HorizontalAlignment="Left" VerticalAlignment="Center" Width="114" Foreground="#FF00EA11" FontWeight="Bold"/>
+            <Button Content="Carrier (5)" Canvas.Left="71" Click="selectedShip" Canvas.Top="102" HorizontalAlignment="Center" VerticalAlignment="Top" Width="210" Height="52" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" Cursor="Hand" Opacity="0"/>
+            <Button Content="Battleship (4)" Canvas.Left="76" Click="selectedShip" Canvas.Top="164" Width="157" Height="44" HorizontalAlignment="Center" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" Cursor="Hand" Opacity="0"/>
+            <Button Content="Cruiser (3)" Canvas.Left="75" Click="selectedShip" Canvas.Top="225" Width="111" Height="37" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" Cursor="Hand" Opacity="0"/>
+            <Button Content="Submarine (3)" Canvas.Left="71" Click="selectedShip" Canvas.Top="279" Width="111" Height="37" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" Cursor="Hand" Opacity="0"/>
+            <Button Content="Destroyer (2)" Canvas.Left="71" Click="selectedShip" Canvas.Top="329" Width="77" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" Foreground="Transparent" Cursor="Hand" Opacity="0" Background="Transparent"/>
+            <Label x:Name="pleaseSelect" Visibility="Hidden" Content="Please Select a Ship from the Left first!" Canvas.Left="392" Canvas.Top="229" Height="34" Width="306" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFFB0000" FontWeight="Bold" FontSize="16">
+                <Label.Background>
+                    <SolidColorBrush Color="#FFD2D2D2" Opacity="0.6"/>
+                </Label.Background>
+            </Label>
+            <Label x:Name="allPlaced" Visibility="Hidden" Content="SHIP HAS BEEN PLACED, SELECT NEW SHIP!" Canvas.Left="415" Canvas.Top="223" HorizontalAlignment="Center" VerticalAlignment="Top" Width="255" Foreground="#FFE90000" FontWeight="Bold">
+                <Label.Background>
+                    <SolidColorBrush Color="#FFE7F8FF" Opacity="0.6"/>
+                </Label.Background>
+            </Label>
+        </Canvas>
+
+    </Canvas>
+
+
+
+
+
+
+
+
+
+</Window>

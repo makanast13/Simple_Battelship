@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="default background.png" />
+    <None Remove="GameScreenBackground.png" />
+    <None Remove="HowToPlayScreen.png" />
+    <None Remove="MainMenu_Screen.png" />
+    <None Remove="placeshipsBackground.png" />
+    <None Remove="PLACESHIPSbg %281%29.png" />
+    <None Remove="PLACESHIPSbg %282%29.png" />
+    <None Remove="placeshipsBG.png" />
+    <None Remove="SettingsScreen.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="default background.png" />
+    <Resource Include="GameScreenBackground.png" />
+    <Resource Include="HowToPlayScreen.png" />
+    <Resource Include="MainMenu_Screen.png" />
+    <Resource Include="placeshipsBackground.png" />
+    <Resource Include="PLACESHIPSbg (2).png" />
+    <Resource Include="SettingsScreen.png" />
+  </ItemGroup>
+
+</Project>
